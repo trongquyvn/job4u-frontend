@@ -1,0 +1,75 @@
+## serverless.yml with the [latest stable version of serverless-next.js](https://www.npmjs.com/package/@sls-next/serverless-component)
+
+myNextApplication:
+    component: '@sls-next/serverless-component@1.18.0'
+    # deploymentBucket:
+    #   name: "job4u101"
+    ## Cloudfront cache the pages at the edge locations for 31 days. max-age=0 in combination with must-revalidate ensure browsers never cache the static pages.
+    cache-control: public, max-age=0, s-maxage=2678400, must-revalidate
+    inputs:
+        policy: 'arn:aws:iam::406695445595:policy/ServerlessPolicy'
+        bucketName: jobs-web
+        domain: ["v2", "job4u.io"]  ## [ sub-domain, domain ]
+        # domain: 'job4u.io' ## sub-domain defaults to www
+        domainType: 'both'
+        # domainRedirects:
+        #    www.job4u.io: https://job4u.io
+
+        # memory: 1024
+        # memory:
+        #   defaultLambda: 512
+        #   apiLambda: 1024
+        #   imageLambda: 1024
+
+        publicDirectoryCache:
+            value: public, max-age=604800
+            test: /\.(gif|jpe?g|png|txt|xml)$/i
+
+        # cloudfront:
+        #   ## if you want to use an existing cloudfront distribution, provide it here
+        #   distributionId: JOBSWEB101 #optional
+        #   ## this is the default cache behaviour of the cloudfront distribution
+        #   ## the origin-request edge lambda associated to this cache behaviour does the pages server side rendering
+        #   defaults:
+        #     forward:
+        #       headers:
+        #         [
+        #           CloudFront-Is-Desktop-Viewer,
+        #           CloudFront-Is-Mobile-Viewer,
+        #           CloudFront-Is-Tablet-Viewer,
+        #         ]
+        #   ## this is the cache behaviour for next.js api pages
+        #   api:
+        #     minTTL: 10
+        #     maxTTL: 10
+        #     defaultTTL: 10
+        #   # you can set other cache behaviours like "defaults" above that can handle server side rendering
+        #   # but more specific for a subset of your next.js pages
+        #   /job/*:
+        #     minTTL: 1000
+        #     maxTTL: 1000
+        #     defaultTTL: 1000
+        #     forward:
+        #       cookies: "all"
+        #       queryString: false
+        #   /about:
+        #     minTTL: 3000
+        #     maxTTL: 3000
+        #     defaultTTL: 3000
+        #   ## you can add custom origins to the cloudfront distribution
+        #   origins:
+        #     - url: /static
+        #       pathPatterns:
+        #         /wp-content/*:
+        #           minTTL: 10
+        #           maxTTL: 10
+        #           defaultTTL: 10
+        #   priceClass: "PriceClass_100"
+        #   ## You can add custom error responses
+        #   errorPages:
+        #     - code: 503
+        #       path: "/503.html"
+        #       minTTL: 5         ## optional, minimum ttl the error is cached (default 10)
+        #       responseCode: 500 ## optional, alters the response code
+        #   originAccessIdentityId: JOBSWEB101 ## optional
+        #   paths: ["/*"] ## which paths should be invalidated on deploy, default matches everything, empty array skips invalidation completely

@@ -1,0 +1,110 @@
+@import 'styles/_theme.scss';
+@import 'styles/_mixin.scss';
+
+.topContent {
+    height: 250px;
+    border-bottom: 1px solid $gray-4;
+}
+
+.background {
+    @include fullBackground;
+}
+
+.midContent {
+    margin-top: -70px;
+    padding: 0 16px;
+    position: relative;
+}
+
+.avatar {
+    width: 145px;
+    height: 145px;
+    background-size: unset;
+    border: 1px solid $gray-4;
+    background-color: $white;
+}
+
+.titleContent {
+    width: calc(100% - 145px);
+}
+
+.avatarContent {
+    display: flex;
+    align-items: flex-end;
+    column-gap: 16px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+.textIcon {
+    display: flex;
+    column-gap: 4px;
+    svg {
+        width: 20px;
+        height: 20px;
+        path {
+            fill: $primary;
+        }
+    }
+}
+
+.address {
+    font-size: 14px;
+    color: $gray-2;
+}
+
+.distance {
+    font-size: 14px;
+    color: $primary;
+    font-weight: bold;
+}
+
+.listButton {
+    display: flex;
+    column-gap: 8px;
+    margin: 8px 0 !important;
+}
+
+.optionIcon {
+    display: flex;
+    column-gap: 4px;
+    svg {
+        width: 16px;
+        height: 16px;
+        margin: auto 0;
+        path {
+            fill: $gray;
+        }
+    }
+}
+
+.rightInfo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.titleInfo {
+    font-size: 22px;
+    padding: 8px 0;
+}
+
+.gridBorder {
+    border: 1px solid $gray-4;
+    padding: 12px;
+}
+
+@media only screen and (max-width: 320px) {
+    .titleContent {
+        width: 100%;
+    }
+
+    .avatarContent {
+        display: grid;
+        gap: 0px;
+    }
+}

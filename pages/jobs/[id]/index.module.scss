@@ -1,0 +1,99 @@
+@import 'styles/_theme.scss';
+@import 'styles/_mixin.scss';
+
+.topContent {
+    height: 250px;
+    border-bottom: 1px solid $gray-4;
+}
+
+.background {
+    @include fullBackground;
+}
+
+.midContent {
+    margin-top: -90px;
+    padding: 0 16px;
+    position: relative;
+}
+
+.avatar {
+    width: 145px;
+    height: 145px;
+    background-size: unset;
+    border: 1px solid $gray-4;
+    background-color: $white;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+.titleInfo {
+    font-size: 22px;
+    padding: 8px 0;
+}
+
+.subTitle {
+    font-size: 16px;
+    color: $gray-1;
+}
+
+.textIcon {
+    display: flex;
+    column-gap: 4px;
+    svg {
+        width: 20px;
+        height: 20px;
+        path {
+            fill: $primary;
+        }
+    }
+}
+
+.textIconRight {
+    margin-top: 12px;
+    display: flex;
+    column-gap: 8px;
+
+    svg {
+        width: 36px;
+        height: 36px;
+        path {
+            fill: $primary-4;
+        }
+    }
+}
+
+.address {
+    font-size: 14px;
+    color: $gray-2;
+}
+
+.overview {
+    font-size: 16px;
+    color: $gray;
+}
+
+.listButton {
+    display: flex;
+    column-gap: 8px;
+    justify-content: center;
+    margin: 8px 0 !important;
+}
+
+.rightInfo {
+    div {
+        text-align: right;
+    }
+}
+
+.gridBorder {
+    border: 1px solid $gray-4;
+    padding: 12px;
+}
+
+.jobRecently {
+    margin-top: 16px;
+}

@@ -1,0 +1,15 @@
+@import 'styles/_theme.scss';
+
+.sortBy {
+    margin: auto 0;
+    color: $primary;
+    cursor: pointer;
+}
+
+.sortContent-desc::after {
+    content: '↓';
+}
+
+.sortContent-asc::after {
+    content: '↑';
+}
