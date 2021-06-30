@@ -11,7 +11,7 @@ const routes = {
     main: [
         {
             path: '/',
-            name: 'Admin',
+            name: 'Home',
             icon: <Home fontSize="small" />,
         },
     ],

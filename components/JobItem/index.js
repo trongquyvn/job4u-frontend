@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Router from 'next/router';
 
-import JobTag from 'jobs-react/component/JobTag';
-import CustomButton from 'jobs-react/component/CustomButton';
+import JobTag from 'jobs-storybook/component/JobTag';
+import CustomButton from 'jobs-storybook/component/CustomButton';
 
 import Share from 'components/Share';
+import Apply from 'components/Apply';
 import { getTimeDifference } from 'utils/TimeFunction';
 import { getImageFromS3 } from 'utils/ImageFunction';
 import { getDistanceByLatLon } from 'utils/DistanceFunction';
-import { actionGetCompanyDetail } from 'redux/actions';
+import { actionGetCompanyDetail } from 'redux/actions/jobCompanyDetailt';
 
 import ShareIcon from '@material-ui/icons/Share';
 import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
@@ -63,7 +64,6 @@ const JobItem = (props) => {
                 : 'Negotiable';
     }
     const featureJob = typeof promotionValue !== 'undefined' ? promotionValue : 0;
-    addresses = typeof addresses !== 'undefined' ? addresses[0] : '';
     const shareURL = `${window.location.origin}/jobs/${requisitionId}`;
 
     const { customAttributes: companyCustom = {}, websiteUri = '' } = companyInfo || {};
@@ -102,11 +102,23 @@ const JobItem = (props) => {
                     </>
                 }
                 color="gray"
+                hover
+                hoverBorder="black"
+                hoverColor="black"
             />,
             <Share key="2" url={shareURL}>
-                <CustomButton icon={<ShareIcon />} text="Share" color="gray" />
+                <CustomButton
+                    icon={<ShareIcon />}
+                    text="Share"
+                    color="gray"
+                    hover
+                    hoverBorder="black"
+                    hoverColor="black"
+                />
             </Share>,
-            <CustomButton key="3" type="primary" text="Apply" />,
+            <Apply key="3">
+                <CustomButton type="primary" text="Apply" hover />
+            </Apply>,
         ],
     };
     return load && <JobTag {...args} />;

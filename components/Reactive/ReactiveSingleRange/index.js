@@ -26,13 +26,7 @@ const List = (props) => {
 const ReactiveSingleRange = (props) => {
     const { properties = {}, buttonTitle, cacheId } = props;
     const [init, setInit] = useState(false);
-    // const [defaultValue, setDefaultValue] = useState('');
     const [active, setActive] = useState();
-
-    // useEffect(() => {
-    //     const defaultValue = getCache(cacheId);
-    //     setDefaultValue(defaultValue);
-    // }, []);
 
     const defaultValue = getCache(cacheId);
     if (defaultValue) {

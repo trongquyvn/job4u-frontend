@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import { getJobRelated } from 'services/Jobs';
-import { actionGetJobDetail, actionGetCompanyDetail } from 'redux/actions';
+import { actionGetJobDetail, actionGetCompanyDetail } from 'redux/actions/jobCompanyDetailt';
 
-import GMap from 'components/GMap';
+// import GMap from 'components/GMap';
 import Loading from 'components/Loading';
 import Share from 'components/Share';
 import { GridContainer, GridItem } from 'components/Grid';
@@ -30,8 +30,8 @@ import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
 // import moment from 'moment';
 
-import CustomButton from 'jobs-react/component/CustomButton';
-import Badges from 'jobs-react/component/Badges';
+import CustomButton from 'jobs-storybook/component/CustomButton';
+import Badges from 'jobs-storybook/component/Badges';
 
 import classes from './index.module.scss';
 
@@ -40,6 +40,7 @@ const JobDetails = () => {
     const router = useRouter();
     const { id } = router.query;
     const data = useSelector(({ jobsReducer }) => jobsReducer.jobDetails[id]);
+    const [GMap, setGMap] = useState();
     const [jobs, setJobs] = useState([]);
     const [companyExternalId, setCompanyExternalId] = useState();
     const companyInfo = useSelector(({ companiesReducer }) => companiesReducer.companyDetails[companyExternalId]);
@@ -47,6 +48,11 @@ const JobDetails = () => {
     const initJobDetails = async () => {
         if (!data && id) dispatch(actionGetJobDetail(id));
     };
+
+    useEffect(() => {
+        const GMap = dynamic(() => import('components/GMap'), { ssr: false });
+        setGMap(GMap);
+    }, []);
 
     useEffect(() => {
         initJobDetails();
@@ -116,60 +122,59 @@ const JobDetails = () => {
                     </GridItem>
                 </Hidden>
                 <GridItem xs={12} md={4}>
-                    <GMap lat={location.lat} lng={location.lon} />
+                    {GMap ? <GMap lat={location.lat} lng={location.lon} /> : ''}
                 </GridItem>
             </GridContainer>
-            <GridContainer className={classes.midContent}>
-                <GridItem xs={12}>
-                    <div
-                        className={classes.background + ' ' + classes.avatar}
-                        style={{ backgroundImage: `url('${getImageFromS3(companyDisplayName)}')` }}
-                    />
-                </GridItem>
 
-                <GridContainer>
-                    <GridItem xs={12} md={8}>
-                        <div className={classes.title}>{title}</div>
-                        <div className={classes.subTitle}>{companyDisplayName}</div>
-                        <div className={classes.textIcon}>
-                            <PlaceIcon />
-                            <span className={classes.address}>{addresses[0]}</span>
+            <div className={classes.midContent}>
+                <div
+                    className={classes.background + ' ' + classes.avatar}
+                    style={{ backgroundImage: `url('${getImageFromS3(companyDisplayName)}')` }}
+                />
+            </div>
+
+            <GridContainer className={classes.midContent}>
+                <GridItem xs={12} md={8}>
+                    <div className={classes.title}>{title}</div>
+                    <div className={classes.subTitle}>{companyDisplayName}</div>
+                    <div className={classes.textIcon}>
+                        <PlaceIcon />
+                        <span className={classes.address}>{addresses}</span>
+                    </div>
+                </GridItem>
+                <Box clone order={{ xs: 2, md: 1 }}>
+                    <GridItem xs={12} md={4} className={classes.rightInfo}>
+                        <div className={classes.address + ' primary-color'}>{baseSalary}</div>
+                        <div className={classes.address + ' danger-color'}>
+                            {getTimeDifference(new Date(postingPublishTime))}
+                        </div>
+                        <div>
+                            {facebookUri ? (
+                                <a href={facebookUri} target="_blank">
+                                    <FacebookIcon />
+                                </a>
+                            ) : (
+                                ''
+                            )}
+                            {link ? (
+                                <a href={'//' + link} target="_blank">
+                                    <LaunchIcon />
+                                </a>
+                            ) : (
+                                ''
+                            )}
                         </div>
                     </GridItem>
-                    <Box clone order={{ xs: 2, md: 1 }}>
-                        <GridItem xs={12} md={4} className={classes.rightInfo}>
-                            <div className={classes.address + ' primary-color'}>{baseSalary}</div>
-                            <div className={classes.address + ' danger-color'}>
-                                {getTimeDifference(new Date(postingPublishTime))}
-                            </div>
-                            <div>
-                                {facebookUri ? (
-                                    <a href={facebookUri} target="_blank">
-                                        <FacebookIcon />
-                                    </a>
-                                ) : (
-                                    ''
-                                )}
-                                {link ? (
-                                    <a href={'//' + link} target="_blank">
-                                        <LaunchIcon />
-                                    </a>
-                                ) : (
-                                    ''
-                                )}
-                            </div>
-                        </GridItem>
-                    </Box>
-                    <Box clone order={{ xs: 1, md: 2 }}>
-                        <GridItem xs={12} className={classes.listButton}>
-                            <CustomButton icon={<SkipNextIcon />} type="primary" text="Apply" width="120px" hover />
-                            <Share url={shareURL}>
-                                <CustomButton icon={<ShareIcon />} type="primary" text="Share" width="120px" hover />
-                            </Share>
-                            <CustomButton icon={<FavoriteBorderIcon />} text="0" width="60px" />
-                        </GridItem>
-                    </Box>
-                </GridContainer>
+                </Box>
+                <Box clone order={{ xs: 1, md: 2 }}>
+                    <GridItem xs={12} className={classes.listButton}>
+                        <CustomButton icon={<SkipNextIcon />} type="primary" text="Apply" width="120px" hover />
+                        <Share url={shareURL}>
+                            <CustomButton icon={<ShareIcon />} type="primary" text="Share" width="120px" hover />
+                        </Share>
+                        <CustomButton icon={<FavoriteBorderIcon />} text="0" width="60px" />
+                    </GridItem>
+                </Box>
             </GridContainer>
 
             <Box clone p={1}>

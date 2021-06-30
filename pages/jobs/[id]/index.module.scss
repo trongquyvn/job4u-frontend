@@ -7,13 +7,12 @@
 }
 
 .background {
+    background-color: #99999938;
     @include fullBackground;
 }
 
 .midContent {
-    margin-top: -90px;
     padding: 0 16px;
-    position: relative;
 }
 
 .avatar {
@@ -22,6 +21,8 @@
     background-size: unset;
     border: 1px solid $gray-4;
     background-color: $white;
+    margin-top: -90px;
+    position: relative;
 }
 
 .title {
@@ -37,6 +38,7 @@
 
 .subTitle {
     font-size: 16px;
+    padding: 0 0 8px 0;
     color: $gray-1;
 }
 

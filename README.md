@@ -18,3 +18,5 @@ git push -u origin main
 yarn dev
 yarn start
 ```
+
+-   [ ] Fix YARN security alert on Github: `yarn upgrade-interactive --latest`

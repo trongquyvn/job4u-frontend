@@ -7,13 +7,12 @@
 }
 
 .background {
+    background-color: #99999938;
     @include fullBackground;
 }
 
 .midContent {
-    margin-top: -70px;
     padding: 0 16px;
-    position: relative;
 }
 
 .avatar {
@@ -22,6 +21,8 @@
     background-size: unset;
     border: 1px solid $gray-4;
     background-color: $white;
+    margin-top: -70px;
+    position: relative;
 }
 
 .titleContent {

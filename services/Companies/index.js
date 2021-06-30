@@ -14,8 +14,8 @@ export const getCompanyDetails = async (id) => {
             const err = response.data || {};
             const message = err.message || response.statusText || error.message;
             console.log('>> getCompanyDetails error: ', message);
-            alert(message);
-            if (typeof window !== 'undefined') window.location.href = '/companies';
+            // alert(message);
+            // if (typeof window !== 'undefined') window.location.href = '/companies';
         });
 };
 

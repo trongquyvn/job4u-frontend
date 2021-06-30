@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 
-import MarkerInformation from 'jobs-react/component/MarkerInformation';
+import MarkerInformation from 'jobs-storybook/component/MarkerInformation';
 
 import { getCoverFromS3 } from 'utils/ImageFunction';
 import { getDistanceByLatLon } from 'utils/DistanceFunction';
@@ -16,8 +16,8 @@ const CompanyItem = (props) => {
     }, []);
 
     const initDistance = () => {
-        const { lat, lon } = data.location;
-        getDistanceByLatLon(lat, lon, setDistance);
+        const { lat, lng } = data.location;
+        getDistanceByLatLon(lat, lng, setDistance);
     };
 
     let { externalId, headquartersAddress, displayName = '', customAttributes = {} } = data;

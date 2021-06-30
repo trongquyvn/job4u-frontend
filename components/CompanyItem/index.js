@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 
-import CompanyTag from 'jobs-react/component/CompanyTag';
-import CustomButton from 'jobs-react/component/CustomButton';
+import CompanyTag from 'jobs-storybook/component/CompanyTag';
+import CustomButton from 'jobs-storybook/component/CustomButton';
 
 import Share from 'components/Share';
 import { getImageFromS3, getCoverFromS3 } from 'utils/ImageFunction';
@@ -24,6 +24,7 @@ const CompanyItem = (props) => {
 
     const initDistance = () => {
         const { lat, lon } = data.location;
+        console.log('data.location: ', data.location);
         getDistanceByLatLon(lat, lon, setDistance);
     };
 
@@ -48,8 +49,8 @@ const CompanyItem = (props) => {
         badges: skills.stringValues || [],
         address: headquartersAddress,
         distance: distance,
-        type: specialism.stringValues || '',
-        size: size,
+        type: specialism.stringValues || 'Outsourcing',
+        size: size || 'SMALL',
         country: code,
         job: (jobs.stringValues || 0) + ' Jobs',
         link: '//' + link,

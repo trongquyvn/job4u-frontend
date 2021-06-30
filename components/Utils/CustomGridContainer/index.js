@@ -10,8 +10,8 @@ const CustomGridContainer = (props) => {
         [classes.gap4]: gap === 4,
         [classes.gap8]: gap === 8,
         [classes.gap12]: gap === 12,
-        [classes['responsive-1']]: columns === 2,
-        [classes['responsive-2']]: columns === 3,
+        [classes['responsive-2']]: columns === 2,
+        [classes['responsive-3']]: columns === 3,
     });
 
     return <div className={gridClasses}>{children}</div>;

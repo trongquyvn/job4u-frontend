@@ -38,7 +38,7 @@ const List = (props) => {
 };
 
 const ReactiveDynamicRangeSlider = (props) => {
-    const { properties = {}, buttonTitle, cacheId } = props;
+    const { properties = {}, buttonTitle, cacheId, disabled } = props;
     const [init, setInit] = useState(false);
     const [defaultValue, setDefaultValue] = useState([]);
     const [active, setActive] = useState([]);
@@ -77,6 +77,7 @@ const ReactiveDynamicRangeSlider = (props) => {
                     }}
                 />
             }
+            disabled
         >
             <Button className={classes.button + ' ' + `${active.length ? classes.active : ''}`} variant="outlined">
                 {!active.length ? buttonTitle : active[0] + ' - ' + active[1]}

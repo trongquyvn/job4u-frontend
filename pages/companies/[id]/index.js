@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 
 import { getJobsByCompany } from 'services/Companies';
-import { actionGetCompanyDetail } from 'redux/actions';
-import GMap from 'components/GMap';
+import { actionGetCompanyDetail } from 'redux/actions/jobCompanyDetailt';
+// import GMap from 'components/GMap';
 import Loading from 'components/Loading';
 import Share from 'components/Share';
 import { GridContainer, GridItem } from 'components/Grid';
@@ -23,29 +24,28 @@ import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ApartmentIcon from '@material-ui/icons/Apartment';
 
-import CustomButton from 'jobs-react/component/CustomButton';
-import Badges from 'jobs-react/component/Badges';
+import CustomButton from 'jobs-storybook/component/CustomButton';
+import Badges from 'jobs-storybook/component/Badges';
 
 import classes from './index.module.scss';
-
-const ResponsiveButton = (props) => {
-    console.log('props: ', props);
-    const { children } = props;
-
-    return children;
-};
 
 const CompanyDetails = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { id } = router.query;
     const data = useSelector(({ companiesReducer }) => companiesReducer.companyDetails[id]);
+    const [GMap, setGMap] = useState();
     const [distance, setDistance] = useState();
     const [jobs, setJobs] = useState([]);
 
     const initCompanyDetails = async () => {
         if (!data && id) dispatch(actionGetCompanyDetail(id));
     };
+
+    useEffect(() => {
+        const GMap = dynamic(() => import('components/GMap'), { ssr: false });
+        setGMap(GMap);
+    }, []);
 
     useEffect(() => {
         initCompanyDetails(id);
@@ -97,12 +97,12 @@ const CompanyDetails = () => {
                     </GridItem>
                 </Hidden>
                 <GridItem xs={12} md={4}>
-                    <GMap lat={location.lat} lng={location.lon} />
+                    {GMap ? <GMap lat={location.lat} lng={location.lon} /> : ''}
                 </GridItem>
             </GridContainer>
 
-            <GridContainer className={classes.midContent}>
-                <GridItem xs={12} className={classes.avatarContent}>
+            <div className={classes.midContent}>
+                <div className={classes.avatarContent}>
                     <div
                         className={classes.background + ' ' + classes.avatar}
                         style={{ backgroundImage: `url('${getImageFromS3(displayName)}')` }}
@@ -114,89 +114,88 @@ const CompanyDetails = () => {
                             <span className={classes.address}>{headquartersAddress}</span>
                         </div>
                     </div>
-                </GridItem>
+                </div>
+            </div>
 
-                <Box clone mt={1}>
-                    <GridContainer>
-                        <GridItem xs={12} md={8} className={classes.listButton}>
-                            {facebookUri ? (
-                                <CustomButton
-                                    icon={<FacebookIcon />}
-                                    color="white"
-                                    background="pink"
-                                    text="Facebook"
-                                    width="120px"
-                                    hover
-                                    onClick={() => {
-                                        window.open(facebookUri);
-                                    }}
-                                />
-                            ) : (
-                                ''
-                            )}
+            <Box clone p={1}>
+                <GridContainer spacing={2}>
+                    <GridItem xs={12} md={8} className={classes.listButton}>
+                        {facebookUri ? (
+                            <CustomButton
+                                icon={<FacebookIcon />}
+                                color="white"
+                                background="pink"
+                                text="Facebook"
+                                width="120px"
+                                hover
+                                onClick={() => {
+                                    window.open(facebookUri);
+                                }}
+                            />
+                        ) : (
+                            ''
+                        )}
 
-                            {link ? (
-                                <CustomButton
-                                    icon={<LaunchIcon />}
-                                    color="white"
-                                    background="pink"
-                                    text="Website"
-                                    width="120px"
-                                    hover
-                                    onClick={() => {
-                                        console.log(21321321);
-                                        window.open('//' + link);
-                                    }}
-                                />
-                            ) : (
-                                ''
-                            )}
+                        {link ? (
+                            <CustomButton
+                                icon={<LaunchIcon />}
+                                color="white"
+                                background="pink"
+                                text="Website"
+                                width="120px"
+                                hover
+                                onClick={() => {
+                                    window.open('//' + link);
+                                }}
+                            />
+                        ) : (
+                            ''
+                        )}
 
-                            <Share url={shareURL}>
-                                <CustomButton
-                                    icon={<ShareIcon />}
-                                    color="white"
-                                    background="pink"
-                                    text="Share"
-                                    width="120px"
-                                    hover
-                                />
-                            </Share>
-                        </GridItem>
-                        <GridItem xs={12} md={4} className={classes.rightInfo}>
-                            <GridContainer>
-                                <GridItem xs={4}>
-                                    <div className={classes.optionIcon}>
-                                        <RemoveRedEyeIcon />
-                                        <span className={classes.address}>{reviewCount}</span>
-                                    </div>
-                                </GridItem>
-                                <GridItem xs={4}>
-                                    <div className={classes.optionIcon}>
-                                        <StarBorderIcon />
-                                        <span className={classes.address}>{ratingValue}</span>
-                                    </div>
-                                </GridItem>
-                                <GridItem xs={4}>
-                                    <div className={classes.optionIcon}>
-                                        <ApartmentIcon />
-                                        <span className={classes.address}>{size}</span>
-                                    </div>
-                                </GridItem>
-                            </GridContainer>
-                            <GridContainer>
-                                <GridItem xs={4}>
-                                    <span className={classes.address}>{countryValue}</span>
-                                </GridItem>
-                                <GridItem xs={4}>
-                                    <span className={classes.distance}>{distance}</span>
-                                </GridItem>
-                                <GridItem xs={4}></GridItem>
-                            </GridContainer>
-                        </GridItem>
-                    </GridContainer>
-                </Box>
-            </GridContainer>
+                        <Share url={shareURL}>
+                            <CustomButton
+                                icon={<ShareIcon />}
+                                color="white"
+                                background="pink"
+                                text="Share"
+                                width="120px"
+                                hover
+                            />
+                        </Share>
+                    </GridItem>
+                    <GridItem xs={12} md={4} className={classes.rightInfo}>
+                        <GridContainer>
+                            <GridItem xs={4}>
+                                <div className={classes.optionIcon}>
+                                    <RemoveRedEyeIcon />
+                                    <span className={classes.address}>{reviewCount}</span>
+                                </div>
+                            </GridItem>
+                            <GridItem xs={4}>
+                                <div className={classes.optionIcon}>
+                                    <StarBorderIcon />
+                                    <span className={classes.address}>{ratingValue}</span>
+                                </div>
+                            </GridItem>
+                            <GridItem xs={4}>
+                                <div className={classes.optionIcon}>
+                                    <ApartmentIcon />
+                                    <span className={classes.address}>{size}</span>
+                                </div>
+                            </GridItem>
+                        </GridContainer>
+                        <GridContainer>
+                            <GridItem xs={4}>
+                                <span className={classes.address}>{countryValue}</span>
+                            </GridItem>
+                            <GridItem xs={4}>
+                                <span className={classes.distance}>{distance}</span>
+                            </GridItem>
+                            <GridItem xs={4}></GridItem>
+                        </GridContainer>
+                    </GridItem>
+                </GridContainer>
+            </Box>
 
             <Box clone p={1}>
                 <GridContainer spacing={2}>

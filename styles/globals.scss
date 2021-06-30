@@ -39,3 +39,21 @@ a {
         display: none;
     }
 }
+
+.empty-data {
+    &:empty {
+        display: none;
+    }
+}
+
+.leaflet-popup-content {
+    width: auto !important;
+}
+
+.leaflet-popup-tip {
+    display: none !important;
+}
+
+// amplify-container {
+//     height: 0;
+// }

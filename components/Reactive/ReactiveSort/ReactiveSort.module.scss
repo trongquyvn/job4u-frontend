@@ -13,3 +13,12 @@
 .sortContent-asc::after {
     content: '↑';
 }
+
+.icon {
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.active {
+    color: $hot;
+}

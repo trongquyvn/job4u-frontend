@@ -5,3 +5,12 @@
 .hidden {
     display: none;
 }
+
+.disabled {
+    background-color: #f2f0f0;
+    cursor: not-allowed;
+
+    button {
+        cursor: not-allowed;
+    }
+}

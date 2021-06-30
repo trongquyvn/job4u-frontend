@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 
-import MarkerInformation from 'jobs-react/component/MarkerInformation';
+import MarkerInformation from 'jobs-storybook/component/MarkerInformation';
 
 import { getTimeDifference } from 'utils/TimeFunction';
 import { getImageFromS3 } from 'utils/ImageFunction';
@@ -19,8 +19,8 @@ const JobMarker = (props) => {
     }, []);
 
     const initDistance = () => {
-        const { lat, lon } = data.location;
-        getDistanceByLatLon(lat, lon, setDistance);
+        const { lat, lng } = data.location;
+        getDistanceByLatLon(lat, lng, setDistance);
     };
 
     title = title.replace(/[<>]/g, '');
@@ -33,7 +33,6 @@ const JobMarker = (props) => {
                 ? customAttributes.baseSalary.stringValues
                 : 'Negotiable';
     }
-    addresses = typeof addresses !== 'undefined' ? addresses[0] : '';
 
     const args = {
         title: title,

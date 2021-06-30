@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import Router from 'next/router';
+
+import CustomButton from 'jobs-storybook/component/CustomButton';
 
 // @material-ui/core components
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import Popover from '@material-ui/core/Popover';
 import Divider from '@material-ui/core/Divider';
-// import Person from '@material-ui/icons/Person';
 import Notifications from '@material-ui/icons/Notifications';
-import Dashboard from '@material-ui/icons/Dashboard';
 import Person from '@material-ui/icons/Person';
+import Dashboard from '@material-ui/icons/Dashboard';
 
-import CustomButton from 'components/Utils/CustomButton';
+import IconButton from 'components/Utils/IconButton';
 import Load from 'components/Load';
 
 import classes from './Header.module.scss';
@@ -36,27 +38,29 @@ const UserNavbar = () => {
     };
 
     const openNotification = Boolean(anchorEl1);
-    const idNot = openNotification ? 'notification-popover' : undefined;
-
     const openProfile = Boolean(anchorEl2);
-    const idPro = openProfile ? 'profile-popover' : undefined;
+    const onClickLogin = () => {
+        Router.push('/login');
+    };
+
     return (
         <>
-            <CustomButton transparent justIcon>
-                <Load>
-                    <Dashboard />
-                </Load>
-            </CustomButton>
-
+            {/* <div className={classes.manager}>
+                <CustomButton hover type="primary" text="Sign In" width="80px" onClick={onClickLogin} />
+            </div> */}
             <div className={classes.manager}>
-                <CustomButton transparent justIcon onClick={handleClickNotification} aria-describedby={idNot}>
+                <IconButton transparent justIcon>
+                    <Load>
+                        <Dashboard />
+                    </Load>
+                </IconButton>
+                <IconButton transparent justIcon onClick={handleClickNotification}>
                     <Load>
                         <Notifications />
                         <span className={classes.notifications}>5</span>
                     </Load>
-                </CustomButton>
+                </IconButton>
                 <Popover
-                    id={idNot}
                     open={openNotification}
                     anchorEl={anchorEl1}
                     onClose={handleCloseNotification}
@@ -77,14 +81,13 @@ const UserNavbar = () => {
             </div>
 
             <div className={classes.manager}>
-                <CustomButton transparent justIcon onClick={handleClickProfile} aria-describedby={idPro}>
+                <IconButton transparent justIcon onClick={handleClickProfile}>
                     <Load>
                         <Person />
                     </Load>
-                </CustomButton>
+                </IconButton>
 
                 <Popover
-                    id={idPro}
                     open={openProfile}
                     anchorEl={anchorEl2}
                     onClose={handleCloseProfile}

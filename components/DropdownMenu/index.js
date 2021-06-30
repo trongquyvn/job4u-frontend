@@ -7,7 +7,7 @@ import Popper from '@material-ui/core/Popper';
 import classes from './DropdownMenu.module.scss';
 
 const DropdownMenu = (props) => {
-    const { children, options, className = '' } = props;
+    const { children, options, className = '', disabled } = props;
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -24,7 +24,11 @@ const DropdownMenu = (props) => {
 
     return (
         <>
-            <span className={classes.root} ref={anchorRef} onClick={handleToggle}>
+            <span
+                className={classes.root + (disabled ? ' ' + classes.disabled : '')}
+                ref={anchorRef}
+                onClick={disabled ? () => {} : handleToggle}
+            >
                 {children}
             </span>
             <Popper

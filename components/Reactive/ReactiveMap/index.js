@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 
-import ReactiveGoogleMap from '@appbaseio/reactivemaps/lib/components/result/ReactiveGoogleMap';
+// import ReactiveGoogleMap from '@appbaseio/reactivemaps/lib/components/result/ReactiveGoogleMap';
+import ReactiveOpenStreetMap from '@appbaseio/reactivemaps/lib/components/result/ReactiveOpenStreetMap';
 import ReactiveBase from '@appbaseio/reactivesearch/lib/components/basic/ReactiveBase';
 
 import Loading from 'components/Loading';
@@ -48,6 +49,7 @@ const SelectedFiltersComponent = () => (
                             case 'SINGLERANGE':
                                 if (value.label !== 'All') title = value.label;
                                 break;
+                            case 'DATASEARCH':
                             case 'CATEGORYSEARCH':
                                 break;
                             default:
@@ -141,41 +143,37 @@ const ReactiveMap = (props) => {
             className={classes.reactiveBase}
             key={key}
         >
-            {SearchComponent && (
-                <>
-                    <GridContainer className={classes.filterContainer}>
-                        <GridItem xs={12} sm={12} md={6} className={classes.filters}>
-                            <SearchComponent />
-                        </GridItem>
-                        <GridItem xs={12} sm={6} md={3} className={classes.totalWrapper}>
-                            <ReactiveListDynamic
-                                componentId="count-result"
-                                dataField=""
-                                loader=" "
-                                react={{ and: filedResult }}
-                                renderNoResults={() => ''}
-                                showResultStats={true}
-                                renderResultStats={(stats) => {
-                                    const total = numberFormat(stats.numberOfResults, 0);
-                                    const s = ' ' + app;
-                                    return (
-                                        <span className={classes.total}>
-                                            {total}
-                                            {s}
-                                        </span>
-                                    );
-                                }}
-                                render={() => ''}
-                            />
-                        </GridItem>
-                        <GridItem xs={12} sm={6} md={3} className={classes.sortWrapper}>
-                            {SortComponent ? <SortComponent /> : ''}
-                            <div id="reactive-map-switch"></div>
-                        </GridItem>
-                    </GridContainer>
-                </>
-            )}
-            <ReactiveGoogleMap componentId={`googleMap ${app}`} {...mapProps} />
+            <GridContainer className={classes.filterContainer}>
+                <GridItem xs={12} sm={12} md={6} className={classes.filters}>
+                    {SearchComponent ? <SearchComponent /> : ''}
+                </GridItem>
+                <GridItem xs={3} sm={6} md={3} className={classes.totalWrapper}>
+                    <ReactiveListDynamic
+                        componentId="count-result"
+                        dataField=""
+                        loader=" "
+                        react={{ and: filedResult }}
+                        renderNoResults={() => ''}
+                        showResultStats={true}
+                        renderResultStats={(stats) => {
+                            const total = numberFormat(stats.numberOfResults, 0);
+                            const s = ' ' + app;
+                            return (
+                                <span className={classes.total}>
+                                    {total}
+                                    {s}
+                                </span>
+                            );
+                        }}
+                        render={() => ''}
+                    />
+                </GridItem>
+                <GridItem xs={9} sm={6} md={3} className={classes.sortWrapper}>
+                    {SortComponent ? <SortComponent /> : ''}
+                    <div id="reactive-map-switch"></div>
+                </GridItem>
+            </GridContainer>
+            <ReactiveOpenStreetMap componentId={`googleMap ${app}`} {...mapProps} />
         </ReactiveBase>
     );
 };

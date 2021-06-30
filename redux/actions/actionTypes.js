@@ -3,3 +3,5 @@ export const ADD_COMPANY_DETAIL = 'ADD_COMPANY_DETAIL';
 
 export const GET_JOB_DETAIL = 'GET_JOB_DETAIL';
 export const ADD_JOB_DETAIL = 'ADD_JOB_DETAIL';
+
+export const OPEN_LOGIN_FROM = 'OPEN_LOGIN_FROM';

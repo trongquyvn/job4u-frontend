@@ -3,24 +3,24 @@ const routes = {
     url: 'https://www.job4u.io',
     main: [
         {
-            path: '/',
-            name: 'Home',
-            component: '',
+            path: '/jobs',
+            name: 'Jobs',
+        },
+        {
+            path: '/companies',
+            name: 'Companies',
         },
         {
             path: '/',
-            name: 'Company',
-            component: '',
+            name: 'Alerts',
         },
         {
             path: '/',
-            name: 'Portfolio',
-            component: '',
+            name: 'Chat',
         },
         {
             path: '/',
-            name: 'Blog',
-            component: '',
+            name: 'Profile',
         },
     ],
 };

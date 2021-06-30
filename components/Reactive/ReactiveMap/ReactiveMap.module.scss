@@ -37,17 +37,19 @@
     cursor: pointer;
     padding: 2px 5px 3px 5px;
     color: $black;
-    border: 1px solid $gray-3;
+    border: 1px solid $gray-4;
     border-radius: 4px;
+    background-color: #99999938;
 }
 
 .selectedName,
 .selectedClear {
     padding: 2px 4px 0 4px;
-    border: 1px solid $gray-3;
+    border: 1px solid $gray-4;
     border-radius: 4px;
     width: max-content;
     vertical-align: middle;
+    background-color: #99999938;
 }
 
 .selectedClear {
@@ -61,14 +63,20 @@
     gap: 16px;
 }
 
-@media (max-width: 960px) {
-    .total {
-        margin-top: 4px;
+.totalWrapper {
+    div {
+        height: 100%;
     }
+}
 
-    .totalWrapper {
-        height: 24px;
-    }
+@media (max-width: 960px) {
+    // .total {
+    //     margin-top: 4px;
+    // }
+
+    // .totalWrapper {
+    //     height: 24px;
+    // }
 }
 
 // @media (min-width: 960px) {

@@ -35,7 +35,7 @@ const List = (props) => {
 };
 
 const ReactiveMultiList = (props) => {
-    const { properties = {}, buttonTitle, cacheId, renderActiveTitle } = props;
+    const { properties = {}, buttonTitle, cacheId, renderActiveTitle, id } = props;
     const [active, setActive] = useState([]);
 
     const defaultValue = JSON.parse(getCache(cacheId) || '[]');
@@ -56,7 +56,11 @@ const ReactiveMultiList = (props) => {
                 />
             }
         >
-            <Button className={classes.button + ' ' + `${active.length ? classes.active : ''}`} variant="outlined">
+            <Button
+                id={id}
+                className={classes.button + ' ' + `${active.length ? classes.active : ''}`}
+                variant="outlined"
+            >
                 {!active.length
                     ? buttonTitle
                     : renderActiveTitle
