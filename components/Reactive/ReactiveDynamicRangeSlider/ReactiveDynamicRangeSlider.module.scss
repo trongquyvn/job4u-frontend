@@ -1,0 +1,35 @@
+@import 'styles/_theme.scss';
+
+.search {
+    margin-top: 4px;
+    padding: 12px;
+    border: 1px solid $gray-3;
+
+    &:empty {
+        display: none;
+    }
+}
+
+.button {
+    font-size: 12px !important;
+    width: max-content;
+}
+
+.active {
+    border-color: $primary !important;
+    background-color: $primary !important;
+    color: $white !important;
+}
+
+.dynamicRange {
+    width: 500px;
+}
+
+@media (max-width: 600px) {
+    .reactiveRangeSlider {
+        width: calc(100vw - 12px);
+        .dynamicRange {
+            width: 100%;
+        }
+    }
+}

@@ -5,6 +5,7 @@ myNextApplication:
     ## Cloudfront cache the pages at the edge locations for 31 days. max-age=0 in combination with must-revalidate ensure browsers never cache the static pages.
     cache-control: public, max-age=0, s-maxage=2678400, must-revalidate
     inputs:
-        distributionId: E2ETZEW1PP8J2U
+        cloudfront:
+            distributionId: E2985MWL0F9UBH
         bucketName: next-job4u-serverless
         bucketRegion: ap-southeast-1

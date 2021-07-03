@@ -1,0 +1,10 @@
+@import 'styles/_theme.scss';
+
+.root {
+    border: $gray-4 1px solid;
+    width: 100%;
+    height: calc(100vh - 120px);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 12px;
+}
