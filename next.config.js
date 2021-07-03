@@ -1,3 +1,6 @@
 module.exports = {
-    target: 'serverless'
+    target: 'serverless',
+    webpack(config) {
+        return config;
+    },
 };
