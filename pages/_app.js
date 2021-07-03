@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import 'styles/globals.scss';
-import classes from './app.module.scss';
 const APP_NAME = 'Right Person, Right Job | Job4U';
 const MyApp = ({ Component, pageProps }) => {
     // const mapAPIKey = process.env.NEXT_PUBLIC_GEO_MAPS_API_KEY;
@@ -19,9 +18,9 @@ const MyApp = ({ Component, pageProps }) => {
             {freshPage ? (
                 <Component {...pageProps} />
             ) : (
-                <div className={classes.layoutWrapper}>
+                <div>
                     <div>{APP_NAME}</div>
-                    <div className={classes.layoutMain}>
+                    <div>
                         <Component {...pageProps} />
                     </div>
                 </div>
