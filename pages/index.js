@@ -1,7 +1,7 @@
 const Home = () => {
   return (
     <div style={{ padding: '24px', textAlign: 'center' }}>
-      Container 1
+      Container 2
     </div>
   );
 };
