@@ -7,7 +7,6 @@
 
 # testing
 /coverage
-.husky
 
 # next.js
 /.next/
@@ -18,7 +17,6 @@
 
 # misc
 .DS_Store
-*.pem
 
 # debug
 npm-debug.log*
@@ -26,16 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-
-# vercel
-# .vercel
-
-/.serverless
-/.serverless_nextjs
-
-jsconfig.json

@@ -1,22 +1,8 @@
 ## serverless.yml with the [latest stable version of serverless-next.js](https://www.npmjs.com/package/@sls-next/serverless-component)
 
 myNextApplication:
-    # component: "./node_modules/@sls-next/serverless-component"
     component: "@sls-next/serverless-component@3.1.0"
-
-    # deploymentBucket:
-    #   name: "job4u101"
     ## Cloudfront cache the pages at the edge locations for 31 days. max-age=0 in combination with must-revalidate ensure browsers never cache the static pages.
     cache-control: public, max-age=0, s-maxage=2678400, must-revalidate
     inputs:   
-      build:
-        env:
-            NEXT_PUBLIC_ENV: prod
-            NEXT_PUBLIC_ELASTICSEARCH_SERVER: https://search-job4u-45gakawawpkl6jhn3uqsea452e.ap-southeast-1.es.amazonaws.com
-            NEXT_PUBLIC_ELASTICSEARCH_SERVER_API: https://ksv867tl45.execute-api.ap-southeast-1.amazonaws.com/prod/api
-            NEXT_PUBLIC_GEO_MAPS_API_KEY: AIzaSyByd__wpjICbvqWPrYcprNn_pepIkXpyBE
-            NEXT_PUBLIC_IMAGE_URL: https://job4u101.s3-ap-southeast-1.amazonaws.com/assets/images/companies
-            NEXT_PUBLIC_BOT_CHAT_URL: https://chatbot.job4u.io
-            NEXT_PUBLIC_GEOLOCATION_API: https://geolocation-db.com/json
-      bucketName: next-job4u-serverless
-      bucketRegion: ap-southeast-1
+        bucketName: next-blog-serverless
