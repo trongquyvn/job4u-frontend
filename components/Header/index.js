@@ -6,7 +6,7 @@ import MenuList from 'components/MenuList';
 import CustomSwipeableDrawer from 'components/Utils/CustomSwipeableDrawer';
 import Load from 'components/Load';
 import routes from 'routes/Menu';
-import Logo from 'assets/images/job4u-logo.svg';
+// import Logo from 'assets/images/job4u-logo.svg';
 import Menu from '@material-ui/icons/Menu';
 
 import classes from './Header.module.scss';
@@ -31,7 +31,7 @@ const Header = () => {
             <CustomSwipeableDrawer options={<MenuList routes={routes} />}>
                 <Load>
                     <Menu className={classes.menu} />
-                    <Logo className={classes.logo} />
+                    {/* <Logo className={classes.logo} /> */}
                 </Load>
             </CustomSwipeableDrawer>
             <div className={classes.rightMenu}>

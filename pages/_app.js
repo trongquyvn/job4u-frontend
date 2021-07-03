@@ -4,13 +4,13 @@ import dynamic from 'next/dynamic';
 import { Provider } from 'react-redux';
 import store from 'redux/store';
 
-import Amplify from 'aws-amplify';
-import awsconfig from 'config/aws-exports';
+// import Amplify from 'aws-amplify';
+// import awsconfig from 'config/aws-exports';
 
 import 'styles/globals.scss';
 import classes from './app.module.scss';
 
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
 const Layout = dynamic(() => import('layout'), { loading: () => 'Loading' });
 const APP_NAME = 'Right Person, Right Job | Job4U';
 const MyApp = ({ Component, pageProps }) => {
