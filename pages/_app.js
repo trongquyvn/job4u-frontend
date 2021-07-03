@@ -11,7 +11,7 @@ import 'styles/globals.scss';
 import classes from './app.module.scss';
 
 // Amplify.configure(awsconfig);
-const Layout = dynamic(() => import('layout'), { loading: () => 'Loading' });
+// const Layout = dynamic(() => import('layout'), { loading: () => 'Loading' });
 const APP_NAME = 'Right Person, Right Job | Job4U';
 const MyApp = ({ Component, pageProps }) => {
     // const mapAPIKey = process.env.NEXT_PUBLIC_GEO_MAPS_API_KEY;
@@ -34,9 +34,7 @@ const MyApp = ({ Component, pageProps }) => {
                     <div className={classes.layoutWrapper}>
                         <div>{APP_NAME}</div>
                         <div className={classes.layoutMain}>
-                            <Layout>
-                                <Component {...pageProps} />
-                            </Layout>
+                            <Component {...pageProps} />
                         </div>
                     </div>
                 )}
