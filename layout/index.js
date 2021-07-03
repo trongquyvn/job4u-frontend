@@ -4,6 +4,7 @@ import classes from './Layout.module.scss';
 
 const Header = dynamic(() => import('components/Header'), { loading: () => <p>Loading</p> });
 const Footer = dynamic(() => import('components/Footer'), { loading: () => <p>Loading</p> });
+const Chat = dynamic(() => import('components/Chat'));
 const LoginForm = dynamic(() => import('components/LoginForm'));
 const Layout = (props) => {
     const isOpenLoginFrom = useSelector(({ loginReducer }) => loginReducer.isOpenLoginFrom);
@@ -15,6 +16,7 @@ const Layout = (props) => {
             </div>
             <div className={classes.content}>{props.children}</div>
             {isOpenLoginFrom && <LoginForm popup={true} />}
+            <Chat />
             <Footer />
         </>
     );

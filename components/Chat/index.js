@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Iframe from 'react-iframe';
-import ChatIcon from 'assets/images/chat.svg';
 import classNames from 'classnames';
 
 import classes from './Chat.module.scss';
@@ -24,7 +23,7 @@ const Chat = () => {
                     setShow(!show);
                 }}
             >
-                <ChatIcon style={{ width: '45px' }} />
+                <img style={{ width: '45px' }} src="/chat.svg" />
             </div>
         </div>
     );

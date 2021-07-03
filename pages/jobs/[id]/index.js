@@ -7,7 +7,6 @@ import dynamic from 'next/dynamic';
 import { getJobRelated } from 'services/Jobs';
 import { actionGetJobDetail, actionGetCompanyDetail } from 'redux/actions/jobCompanyDetailt';
 
-// import GMap from 'components/GMap';
 import Loading from 'components/Loading';
 import Share from 'components/Share';
 import { GridContainer, GridItem } from 'components/Grid';
@@ -29,8 +28,6 @@ import CodeIcon from '@material-ui/icons/Code';
 import AmpStoriesIcon from '@material-ui/icons/AmpStories';
 import FlagIcon from '@material-ui/icons/Flag';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-
-// import moment from 'moment';
 
 import CustomButton from 'jobs-storybook/component/CustomButton';
 import Badges from 'jobs-storybook/component/Badges';
