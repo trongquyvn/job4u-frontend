@@ -18,5 +18,5 @@ myNextApplication:
             NEXT_PUBLIC_IMAGE_URL: https://job4u101.s3-ap-southeast-1.amazonaws.com/assets/images/companies
             NEXT_PUBLIC_BOT_CHAT_URL: https://chatbot.job4u.io
             NEXT_PUBLIC_GEOLOCATION_API: https://geolocation-db.com/json
-      bucketName: jobs-web
+      bucketName: next-job4u-serverless
       bucketRegion: ap-southeast-1
