@@ -14,7 +14,7 @@ import classes from './app.module.scss';
 const Layout = dynamic(() => import('layout'), { loading: () => 'Loading' });
 const APP_NAME = 'Right Person, Right Job | Job4U';
 const MyApp = ({ Component, pageProps }) => {
-    const mapAPIKey = process.env.NEXT_PUBLIC_GEO_MAPS_API_KEY;
+    // const mapAPIKey = process.env.NEXT_PUBLIC_GEO_MAPS_API_KEY;
     const freshPage = Component.freshPage;
 
     return (
