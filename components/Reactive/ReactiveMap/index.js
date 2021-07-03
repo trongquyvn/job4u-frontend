@@ -180,7 +180,7 @@ const ReactiveMap = (props) => {
 
 ReactiveMap.defaultProps = {
     filedResult: [],
-    onPopoverClick: () => {},
+    onPopoverClick: () => { },
     size: 12,
     app: 'jobs',
 };

@@ -3,23 +3,20 @@ import getDistance from 'geolib/es/getDistance';
 import axios from 'axios';
 import { numberFormat } from '../NumberFunction';
 
-export const getLatLon = (callBack = () => {}) => {
+export const getLatLon = (callBack = () => { }) => {
     if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                callBack(position.coords.latitude, position.coords.longitude);
-            },
-            (error) => {
-                console.log(error.message);
-                callBack(false, false);
-            }
-        );
+        navigator.geolocation.getCurrentPosition((position) => {
+            callBack(position.coords.latitude, position.coords.longitude);
+        }, (error) => {
+            console.log(error.message);
+            callBack(false, false);
+        });
     } else {
         console.log('Geolocation is not supported by this browser.');
     }
 };
 
-export const getDistanceByLatLon = (lat, lon, callBack = () => {}) => {
+export const getDistanceByLatLon = (lat, lon, callBack = () => { }) => {
     getLatLon((latitude, longitude) => {
         if (latitude && longitude) {
             const distance = getDistance({ latitude: lat, longitude: lon }, { latitude, longitude });
@@ -32,12 +29,13 @@ export const getDistanceByLatLon = (lat, lon, callBack = () => {}) => {
     });
 };
 
-export const getCurrentLocation = (callBack = () => {}) => {
+export const getCurrentLocation = (callBack = () => { }) => {
     getLatLon((latitude, longitude) => {
         if (latitude && longitude) {
-            axios.get(process.env.NEXT_PUBLIC_GEOLOCATION_API).then((res) => {
-                callBack(res.data.state);
-            });
+            axios.get(process.env.NEXT_PUBLIC_GEOLOCATION_API)
+                .then((res) => {
+                    callBack(res.data.state);
+                })
         } else {
             callBack(false);
         }

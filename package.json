@@ -37,6 +37,7 @@
         "slug": "^5.1.0"
     },
     "devDependencies": {
+        "@sls-next/serverless-component": "^3.1.0",
         "@svgr/webpack": "^5.5.0",
         "babel-plugin-module-resolver": "^4.1.0",
         "husky": "^6.0.0",

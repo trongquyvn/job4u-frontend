@@ -26,16 +26,16 @@ const GMap = function ({ lat, lng }) {
     // }
 
     useEffect(() => {
-        init();
-    }, []);
+        init()
+    }, [])
 
     const init = () => {
         const mymap = L.map('mapid').setView([lat, lng], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap);
         L.marker([lat, lng]).addTo(mymap);
-        // .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        // .openPopup();
-    };
+            // .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+            // .openPopup();
+    }
 
     return <div id="mapid" style={{ width: '100%', height: '100%' }} />;
 };

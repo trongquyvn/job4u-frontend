@@ -107,14 +107,7 @@ const JobItem = (props) => {
                 hoverColor="black"
             />,
             <Share key="2" url={shareURL}>
-                <CustomButton
-                    icon={<ShareIcon />}
-                    text="Share"
-                    color="gray"
-                    hover
-                    hoverBorder="black"
-                    hoverColor="black"
-                />
+                <CustomButton icon={<ShareIcon />} text="Share" color="gray" hover hoverBorder="black" hoverColor="black" />
             </Share>,
             <Apply key="3">
                 <CustomButton type="primary" text="Apply" hover />
@@ -125,8 +118,8 @@ const JobItem = (props) => {
 };
 
 JobItem.defaultProps = {
-    onClick: () => {},
-    onClickSkill: () => {},
-    onClickLocation: () => {},
+    onClick: () => { },
+    onClickSkill: () => { },
+    onClickLocation: () => { },
 };
 export default JobItem;

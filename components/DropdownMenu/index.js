@@ -27,7 +27,7 @@ const DropdownMenu = (props) => {
             <span
                 className={classes.root + (disabled ? ' ' + classes.disabled : '')}
                 ref={anchorRef}
-                onClick={disabled ? () => {} : handleToggle}
+                onClick={disabled ? () => { } : handleToggle}
             >
                 {children}
             </span>

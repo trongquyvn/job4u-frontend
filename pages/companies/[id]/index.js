@@ -224,4 +224,18 @@ const CompanyDetails = () => {
     );
 };
 
+// export async function getStaticPaths() {
+//     return {
+//         paths: [
+//             { params: { id: '100-degrees-entertainment' } },
+//         ], fallback: false
+//     }
+// }
+
+// export async function getStaticProps({ params }) {
+//     return {
+//         props: {},
+//     }
+// }
+
 export default CompanyDetails;

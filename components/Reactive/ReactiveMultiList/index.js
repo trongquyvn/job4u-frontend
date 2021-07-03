@@ -8,7 +8,7 @@ import { getCache, setCache } from 'utils/LocalStorage';
 import classes from './ReactiveMultiList.module.scss';
 
 const List = (props) => {
-    const { properties, onChange, handleToggle = () => {} } = props;
+    const { properties, onChange, handleToggle = () => { } } = props;
     const { renderItem } = properties;
     const initRenderItem = (label, count) => (
         <div>
@@ -56,16 +56,12 @@ const ReactiveMultiList = (props) => {
                 />
             }
         >
-            <Button
-                id={id}
-                className={classes.button + ' ' + `${active.length ? classes.active : ''}`}
-                variant="outlined"
-            >
+            <Button id={id} className={classes.button + ' ' + `${active.length ? classes.active : ''}`} variant="outlined">
                 {!active.length
                     ? buttonTitle
                     : renderActiveTitle
-                    ? renderActiveTitle(active)
-                    : active.length + '. ' + active[0]}
+                        ? renderActiveTitle(active)
+                        : active.length + '. ' + active[0]}
             </Button>
         </DropdownMenu>
     );

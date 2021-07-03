@@ -22,7 +22,7 @@ const ReactiveDataSearch = (props) => {
                 topSearch.append(search);
             }
         }
-    }, [id, isDesktop]);
+    }, [id, isDesktop]);;
 
     const defaultValue = getCache(cacheId) || '';
     if (defaultValue) {
@@ -36,7 +36,11 @@ const ReactiveDataSearch = (props) => {
 
     return (
         <>
-            <div className="empty-data" id={'Mobile_' + id} style={{ marginBottom: bottom ? '8px' : '0' }} />
+            <div
+                className="empty-data"
+                id={'Mobile_' + id}
+                style={{ marginBottom: bottom ? '8px' : '0' }}
+            />
             <div id={id}>
                 <DataSearch {...properties} showClear={true} className={classes.search} />
             </div>

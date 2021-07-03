@@ -1,4 +1,4 @@
-@import 'styles/_theme.scss';
+@import "styles/_theme.scss";
 
 .searchMobile {
     margin-bottom: 8px;
@@ -20,7 +20,7 @@
             fill: $primary !important;
         }
 
-        div[class*='InputIcon'] {
+        div[class*="InputIcon"] {
             padding-left: 4px;
         }
     }
